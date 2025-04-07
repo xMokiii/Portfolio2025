@@ -18,8 +18,8 @@ const WaterEffect = ({ resolution = 512, environmentMap }) => {
     uWavesIterations: { value: 8 },
     uWavesSpeed: { value: 0.4 },
     uTroughColor: { value: new THREE.Color('#186691') },
-    uSurfaceColor: { value: new THREE.Color('#9bd8c0') },
-    uPeakColor: { value: new THREE.Color('#bbd8e0') },
+    uSurfaceColor: { value: new THREE.Color('#0077be') },
+    uPeakColor: { value: new THREE.Color('#0077be') },
     uPeakThreshold: { value: 0.08 },
     uPeakTransition: { value: 0.05 },
     uTroughThreshold: { value: -0.01 },
@@ -37,7 +37,7 @@ const WaterEffect = ({ resolution = 512, environmentMap }) => {
     side: THREE.DoubleSide,
   });
 
-  const geometry = new THREE.PlaneGeometry(2, 2, resolution, resolution);
+  const geometry = new THREE.PlaneGeometry(100, 100, resolution, resolution);
 
   useFrame(({ clock }) => {
     if (waterRef.current) {
@@ -45,7 +45,8 @@ const WaterEffect = ({ resolution = 512, environmentMap }) => {
     }
   });
 
-  return <mesh ref={waterRef} material={material} geometry={geometry} rotation-x={-Math.PI / 2} />;
+  return <mesh ref={waterRef} material={material} geometry={geometry} position={[0,-1.02,0]} rotation-x={-Math.PI / 2} />;
+  
 };
 
 export default WaterEffect;
