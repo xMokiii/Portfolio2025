@@ -8,56 +8,89 @@ export default function CameraRig() {
   const { camera } = useThree();
   const scroll = useScroll();
 
+  // Stockage de l'état de la caméra manipulé par GSAP
   const gsapObj = useRef({
     x: camera.position.x,
     y: camera.position.y,
     z: camera.position.z,
+    rotX: camera.rotation.x,
     rotY: camera.rotation.y,
+    rotZ: camera.rotation.z,
   });
 
   const targetPosition = useRef(new THREE.Vector3());
+  const targetRotation = useRef(new THREE.Euler());
   const tl = useRef();
 
   useEffect(() => {
-    tl.current = gsap.timeline({ paused: true });
+    tl.current = gsap.timeline();
 
-    // Premier point d’intérêt (animation fluide)
+    // Point d’intérêt 1
     tl.current.to(gsapObj.current, {
-      duration: 2, // temps pour s'arrêter au premier point
-      x: -2,
-      y: 1.5,
-      z: 2,
-      rotY: -Math.PI / 6,
-      ease: "circ.inOut", // mouvement rapide puis pause
+      duration: 1,
+      x: 2.5,
+      y: -0.5,
+      z: -3,
+      rotX: 0,
+      rotY: 7,
+      rotZ: 0,
+      ease: "power1.out",
     }, 0);
 
-    // Deuxième point d’intérêt
+    // Pause
+    tl.current.to({}, { duration: 0.5 }, 1);
+
+    // Point d’intérêt 2
     tl.current.to(gsapObj.current, {
-      duration: 2, // temps pour s'arrêter au deuxième point
-      x: 1,
-      y: 1.2,
-      z: 3,
-      rotY: -Math.PI / 3,
-      ease: "circ.inOut", // même easing pour l'effet fluide
-    }, 2); // commence après le premier mouvement (au temps 2)
+      duration: 1,
+      x: 0,
+      y: -0.9,
+      z: -4.5,
+      rotX: 4,
+      rotY: -6,
+      rotZ: -3.75,
+      ease: "power1.out",
+    }, 1.5);
+
+    // Pause
+    tl.current.to({}, { duration: 0.5 }, 2.5);
+
+    // Point d’intérêt 3
+    tl.current.to(gsapObj.current, {
+      duration: 1,
+      x: 0,
+      y: -1.9,
+      z: -4.5,
+      rotX: 4,
+      rotY: -6,
+      rotZ: -3.75,
+      ease: "power1.out",
+    }, 3);
   }, []);
 
   useFrame(() => {
     if (!tl.current) return;
 
-    // Avance dans la timeline en fonction du scroll
+    // Synchro du scroll avec la timeline
     tl.current.progress(scroll.offset);
 
-    // Position cible pour le lerp
+    // Interpolation vers la position cible
     targetPosition.current.set(
       gsapObj.current.x,
       gsapObj.current.y,
       gsapObj.current.z
     );
-
-    // Applique les interpolations smooth
     camera.position.lerp(targetPosition.current, 0.1);
-    camera.rotation.y = THREE.MathUtils.lerp(camera.rotation.y, gsapObj.current.rotY, 0.1);
+
+    // Interpolation vers la rotation cible
+    targetRotation.current.set(
+      gsapObj.current.rotX,
+      gsapObj.current.rotY,
+      gsapObj.current.rotZ
+    );
+    camera.rotation.x = THREE.MathUtils.lerp(camera.rotation.x, targetRotation.current.x, 0.1);
+    camera.rotation.y = THREE.MathUtils.lerp(camera.rotation.y, targetRotation.current.y, 0.1);
+    camera.rotation.z = THREE.MathUtils.lerp(camera.rotation.z, targetRotation.current.z, 0.1);
   });
 
   return null;

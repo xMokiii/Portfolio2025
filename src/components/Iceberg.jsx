@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import * as THREE from "three";
 import WaterEffect from "./WaterEffect";
 
-export default function Office(props) {
+export default function IceBerg(props) {
   const { nodes, materials } = useGLTF("./models/IcebergFinal.glb");
   const ref = useRef();
 
