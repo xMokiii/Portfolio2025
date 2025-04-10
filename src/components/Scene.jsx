@@ -20,7 +20,7 @@ export default function Scene() {
       <OrbitControls enableZoom={false} enableRotate={false} />
 
       {/* ScrollControls englobe tout le contenu scrollable 3D et HTML */}
-      <ScrollControls pages={3} damping={0.25}>
+      <ScrollControls pages={5} damping={0.25}>
         {/* Partie HTML du scroll (ton overlay visible) */}
         <Overlay />
  

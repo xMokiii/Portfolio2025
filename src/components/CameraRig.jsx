@@ -26,7 +26,7 @@ export default function CameraRig() {
 
     const { x, y, z, rotX, rotY, rotZ } = cameraAnimationState.current;
 
-    // Using stagger to animate multiple properties at different timings
+    // First animation (with stagger for smooth delay effect)
     tl.current.to(cameraAnimationState.current, {
       duration: 2,
       x: x,
@@ -35,37 +35,35 @@ export default function CameraRig() {
       rotX,
       rotY: rotY + 6,
       rotZ,
-      ease: "smooth",
-      stagger: 0.5, // This adds a delay between each element
-    }, 0);
+      ease: "power2.inOut",// Delay between each property update
+    }, 0.5);
 
-    // Staggering the second part of the animation for a cascading effect
+    // Second animation
     tl.current.to(cameraAnimationState.current, {
-      duration: 2,
+      duration: 3,
       x: "+=0",
       y: "-=0.4",
       z: "-=1.5",
       rotX: "+=4",
       rotY: "-=13",
       rotZ: "-=3.75",
-      ease: "smooth",
-      stagger: 0.5, // This adds a delay between each element
-    }, 2.5);
+      ease: "power2.inOut",// Delay between each property update
+    }, 3);
 
-    // Point of interest 3 with stagger effect
+    // Third animation
     tl.current.to(cameraAnimationState.current, {
       duration: 2,
       x: "+=0",
-      y: "-=1",
+      y: "-=2",
       z: "+=0",
       rotX: "+=0",
       rotY: "+=0",
       rotZ: "+=0",
-      ease: "smooth",
-      stagger: 0.5,// Applying stagger to further animations
-    }, 5);
+      ease: "power2.inOut",
+      stagger: 0.5,
+    }, 6);
 
-    // Final point with stagger for camera animation
+    // Fourth and final animation
     tl.current.to(cameraAnimationState.current, {
       duration: 2,
       x: "-=3",
@@ -74,19 +72,24 @@ export default function CameraRig() {
       rotX: "-=4",
       rotY: "+=6",
       rotZ: "+=3.75",
-      ease: "smooth",
-      stagger: 0.5, // Again using stagger
-    }, 7.5);
+      ease: "power2.inOut",
+    }, 8.5);
 
+    return () => {
+      if (tl.current) {
+        tl.current.kill();  // Cleanup the timeline on unmount
+      }
+    };
   }, [camera]);
 
   useFrame(() => {
     if (!tl.current) return;
 
-    // Synchronize scroll with GSAP timeline
-    tl.current.progress(scroll.offset);
+    // Synchronize scroll offset with GSAP timeline progress
+    const scrollProgress = scroll.offset;  // Get scroll offset (0 to 1)
+    tl.current.progress(scrollProgress);  // Set the progress based on scroll
 
-    // Interpolate camera position and rotation efficiently
+    // Interpolate camera position
     targetPosition.current.set(
       gsap.utils.interpolate(camera.position.x, cameraAnimationState.current.x, 0.1),
       gsap.utils.interpolate(camera.position.y, cameraAnimationState.current.y, 0.1),
@@ -95,6 +98,7 @@ export default function CameraRig() {
 
     camera.position.lerp(targetPosition.current, 1);
 
+    // Interpolate camera rotation
     targetRotation.current.set(
       gsap.utils.interpolate(camera.rotation.x, cameraAnimationState.current.rotX, 0.1),
       gsap.utils.interpolate(camera.rotation.y, cameraAnimationState.current.rotY, 0.1),
