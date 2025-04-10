@@ -22,11 +22,18 @@ export default function CameraRig() {
   const tl = useRef();
 
   useEffect(() => {
-    tl.current = gsap.timeline();
-
+    tl.current = gsap.timeline({
+      scrollTrigger: {
+        trigger: scroll.el,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: true,
+      },
+    });
+  
     const { x, y, z, rotX, rotY, rotZ } = cameraAnimationState.current;
-
-    // First animation (with stagger for smooth delay effect)
+  
+    // 1. Camera anim + text 1
     tl.current.to(cameraAnimationState.current, {
       duration: 2,
       x: x,
@@ -35,10 +42,12 @@ export default function CameraRig() {
       rotX,
       rotY: rotY + 6,
       rotZ,
-      ease: "power2.inOut",// Delay between each property update
-    }, 0.5);
-
-    // Second animation
+      ease: "power2.inOut",
+    }, 0)
+    .to("#text-1", { opacity: 1, y: 0, duration: 1 }, 0)
+    .to("#text-1", { opacity: 0, y: -20, duration: 1 }, 2);
+  
+    // 2. Camera anim + text 2
     tl.current.to(cameraAnimationState.current, {
       duration: 3,
       x: "+=0",
@@ -47,10 +56,12 @@ export default function CameraRig() {
       rotX: "+=4",
       rotY: "-=13",
       rotZ: "-=3.75",
-      ease: "power2.inOut",// Delay between each property update
-    }, 3);
-
-    // Third animation
+      ease: "power2.inOut",
+    }, 3)
+    .to("#text-2", { opacity: 1, y: 0, duration: 1 }, 3)
+    .to("#text-2", { opacity: 0, y: -20, duration: 1 }, 6);
+  
+    // 3. Camera anim + text 3
     tl.current.to(cameraAnimationState.current, {
       duration: 2,
       x: "+=0",
@@ -60,10 +71,11 @@ export default function CameraRig() {
       rotY: "+=0",
       rotZ: "+=0",
       ease: "power2.inOut",
-      stagger: 0.5,
-    }, 6);
-
-    // Fourth and final animation
+    }, 6.5)
+    .to("#text-3", { opacity: 1, y: 0, duration: 1 }, 6.5)
+    .to("#text-3", { opacity: 0, y: -20, duration: 1 }, 8.5);
+  
+    // 4. Camera anim + text 4
     tl.current.to(cameraAnimationState.current, {
       duration: 2,
       x: "-=3",
@@ -73,14 +85,15 @@ export default function CameraRig() {
       rotY: "+=6",
       rotZ: "+=3.75",
       ease: "power2.inOut",
-    }, 8.5);
-
+    }, 9)
+    .to("#text-4", { opacity: 1, y: 0, duration: 1 }, 9)
+    .to("#text-4", { opacity: 0, y: -20, duration: 1 }, 11);
+  
     return () => {
-      if (tl.current) {
-        tl.current.kill();  // Cleanup the timeline on unmount
-      }
+      if (tl.current) tl.current.kill();
     };
   }, [camera]);
+  
 
   useFrame(() => {
     if (!tl.current) return;
