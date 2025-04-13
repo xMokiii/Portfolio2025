@@ -3,14 +3,13 @@ import { OrbitControls, ScrollControls } from "@react-three/drei";
 import Overlay from "./Overlay";
 import Iceberg from "./Iceberg";
 import CameraRig from "./CameraRig";
+import * as THREE from "three";
+
 
 export default function Scene() {
   return (
     <div style={{ position: "relative", width: "100vw", height: "100vh" }}>
-      {/* HTML Overlay */}
       <Overlay />
-
-      {/* 3D Canvas */}
       <Canvas
         camera={{
           fov: 50,
@@ -25,6 +24,10 @@ export default function Scene() {
           <Iceberg />
           <CameraRig />
         </ScrollControls>
+        <mesh position={[0, -61, 0]}>
+          <cylinderGeometry args={[55, 55, 120, 20, 1, true]} />
+          <meshBasicMaterial color={0x041c2c} side={THREE.DoubleSide} />
+        </mesh>
       </Canvas>
     </div>
   );

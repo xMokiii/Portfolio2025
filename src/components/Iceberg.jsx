@@ -6,6 +6,7 @@ import WaterEffect from "./WaterEffect";
 export default function IceBerg(props) {
   const { nodes, materials } = useGLTF("./models/IcebergFinal.glb");
   const ref = useRef();
+  
 
   return (
     <group {...props} dispose={null} ref={ref}>

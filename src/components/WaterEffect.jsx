@@ -37,7 +37,7 @@ const WaterEffect = ({ resolution = 512, environmentMap }) => {
     side: THREE.DoubleSide,
   });
 
-  const geometry = new THREE.PlaneGeometry(100, 100, resolution, resolution);
+  const geometry = new THREE.PlaneGeometry(110, 110, resolution, resolution);
 
   useFrame(({ clock }) => {
     if (waterRef.current) {

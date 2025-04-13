@@ -1,76 +1,87 @@
 import { useEffect } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import "./overlay.css";
-
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Overlay() {
-  useEffect(() => {
-    const sections = document.querySelectorAll(".overlay-section");
-
-    sections.forEach((section, index) => {
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "top top", // Start when the section reaches the top of the viewport
-          end: "bottom top", // End when the section leaves the viewport
-          scrub: true, // Smoothly animate based on scroll position
-          pin: true, // Pin the section during its animation
-          pinSpacing: false, // Avoid adding extra space
-        },
-      });
-
-      // Customize animations for each section
-      if (index === 0) {
-        timeline.fromTo(
-          section,
-          { opacity: 1, y: 0 }, // Start visible
-          { opacity: 1, y: 0, duration: 1 } // Keep it visible
-        );
-        timeline.to(section, { opacity: 0, y: -50, duration: 1 }); // Fade out and move up
-      } else if (index === 1) {
-        timeline.fromTo(
-          section,
-          { opacity: 0, scale: 0.8 },
-          { opacity: 1, scale: 1, duration: 1 }
-        );
-        timeline.to(section, { opacity: 0, scale: 0.5, duration: 1 });
-      } else if (index === 2) {
-        timeline.fromTo(
-          section,
-          { opacity: 0, x: -100 },
-          { opacity: 1, x: 0, duration: 1 }
-        );
-        timeline.to(section, { opacity: 0, x: 100, duration: 1 });
-      } else if (index === 3) {
-        timeline.fromTo(
-          section,
-          { opacity: 0, rotate: -15 },
-          { opacity: 1, rotate: 0, duration: 1 }
-        );
-        timeline.to(section, { opacity: 0, rotate: 15, duration: 1 });
-      }
-    });
-  }, []);
-
   return (
-    <div id="overlay">
-      <div className="overlay-section" id="text-1">
-        <h1>Welcome to the Scene</h1>
-        <p>Scroll down to explore the content.</p>
+    <div
+      id="overlay"
+      className="pointer-events-none fixed top-0 left-0 w-full h-full z-10 flex items-center justify-center"
+    >
+      {/* Texte 1 visible par défaut */}
+      <div
+        className="absolute left-1/4 z-20 p-6 bg-slate-200 rounded-lg w-11/12 sm:w-80 md:w-96 lg:w-1/3 max-w-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-100"
+        id="text-1"
+      >
+        <h1 className="font-semibold font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl">
+          Welcome to the Scene
+        </h1>
+        <p className="mt-3 text-sm sm:text-base md:text-lg lg:text-xl">
+          Scroll down to explore the content.
+        </p>
       </div>
-      <div className="overlay-section" id="text-2">
-        <h1>Discover More</h1>
-        <p>Learn about the amazing features of this project.</p>
+
+      {/* Texte 2 */}
+      <div
+        className="absolute left-3/4 z-20 p-6 bg-slate-200 rounded-lg w-11/12 sm:w-80 md:w-96 lg:w-1/3 max-w-full opacity-0 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        id="text-2"
+      >
+        <h1 className="font-semibold font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl">
+          Hello, I'm Wawa Sensei
+        </h1>
+        <p className="text-gray-500 text-sm sm:text-base md:text-lg lg:text-xl">
+          Welcome to my beautiful portfolio
+        </p>
+        <p className="mt-3 text-sm sm:text-base md:text-lg lg:text-xl">I know:</p>
+        <ul className="leading-9 text-sm sm:text-base md:text-lg lg:text-xl">
+          <li>🧑‍💻 How to code</li>
+          <li>🧑‍🏫 How to learn</li>
+          <li>📦 How to deliver</li>
+        </ul>
+        <p className="animate-bounce mt-6 text-sm sm:text-base md:text-lg lg:text-xl">↓</p>
       </div>
-      <div className="overlay-section" id="text-3">
-        <h1>Thank You</h1>
-        <p>We hope you enjoyed the experience!</p>
+
+      {/* Texte 3 */}
+      <div
+        className="absolute left-1/4 z-20 p-6 bg-slate-200 rounded-lg w-11/12 sm:w-80 md:w-96 lg:w-1/3 max-w-full opacity-0 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        id="text-3"
+      >
+        <h1 className="font-semibold font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl">
+          Here are my skillsets 🔥
+        </h1>
+        <p className="text-gray-500 text-sm sm:text-base md:text-lg lg:text-xl">PS: I never test</p>
+        <p className="mt-3 text-sm sm:text-base md:text-lg lg:text-xl font-bold">Frontend 🚀</p>
+        <ul className="leading-9 text-sm sm:text-base md:text-lg lg:text-xl">
+          <li>ReactJS</li>
+          <li>React Native</li>
+          <li>VueJS</li>
+          <li>Tailwind</li>
+        </ul>
+        <p className="mt-3 text-sm sm:text-base md:text-lg lg:text-xl font-bold">Backend 🔬</p>
+        <ul className="leading-9 text-sm sm:text-base md:text-lg lg:text-xl">
+          <li>NodeJS</li>
+          <li>tRPC</li>
+          <li>NestJS</li>
+          <li>PostgreSQL</li>
+        </ul>
+        <p className="animate-bounce mt-6 text-sm sm:text-base md:text-lg lg:text-xl">↓</p>
       </div>
-      <div className="overlay-section" id="text-4">
-        <h1>Goodbye</h1>
-        <p>See you next time!</p>
+
+      {/* Texte 4 */}
+      <div
+        className="absolute left-1/4 z-20 p-6 bg-slate-200 rounded-lg w-11/12 sm:w-80 md:w-96 lg:w-1/3 max-w-full opacity-0 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        id="text-4"
+      >
+        <h1 className="font-semibold font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl">
+          🤙 Call me maybe?
+        </h1>
+        <p className="text-gray-500 text-sm sm:text-base md:text-lg lg:text-xl">
+          I'm very expensive but you won't regret it
+        </p>
+        <p className="mt-6 p-3 bg-slate-200 rounded-lg text-sm sm:text-base md:text-lg lg:text-xl">
+          📞 <a href="tel:(+42) 4242-4242-424242">(+42) 4242-4242-424242</a>
+        </p>
       </div>
     </div>
   );

@@ -34,6 +34,7 @@ export default function CameraRig() {
     const { x, y, z, rotX, rotY, rotZ } = cameraAnimationState.current;
   
     // 1. Camera anim + text 1
+    
     tl.current.to(cameraAnimationState.current, {
       duration: 2,
       x: x,
@@ -45,7 +46,7 @@ export default function CameraRig() {
       ease: "power2.inOut",
     }, 0)
     .to("#text-1", { opacity: 1, y: 0, duration: 1 }, 0)
-    .to("#text-1", { opacity: 0, y: -20, duration: 1 }, 2);
+    .to("#text-1", { opacity: 0, y: -20, duration: 1 }, 1);
   
     // 2. Camera anim + text 2
     tl.current.to(cameraAnimationState.current, {
@@ -65,7 +66,7 @@ export default function CameraRig() {
     tl.current.to(cameraAnimationState.current, {
       duration: 2,
       x: "+=0",
-      y: "-=2",
+      y: "-=1",
       z: "+=0",
       rotX: "+=0",
       rotY: "+=0",
@@ -79,16 +80,28 @@ export default function CameraRig() {
     tl.current.to(cameraAnimationState.current, {
       duration: 2,
       x: "-=3",
-      y: "-=0.3",
-      z: "+=0.5",
-      rotX: "-=4",
-      rotY: "+=6",
-      rotZ: "+=3.75",
+      y: "-=1",
+      z: "-=1.5",
+      rotX: "-=0",
+      rotY: "+=3",
+      rotZ: "+=0",
       ease: "power2.inOut",
     }, 9)
     .to("#text-4", { opacity: 1, y: 0, duration: 1 }, 9)
     .to("#text-4", { opacity: 0, y: -20, duration: 1 }, 11);
   
+    // tl.current.to(cameraAnimationState.current, {
+    //   duration: 2,
+    //   x: "-=3",
+    //   y: "-=0.3",
+    //   z: "+=0.5",
+    //   rotX: "-=4",
+    //   rotY: "+=6",
+    //   rotZ: "+=3.75",
+    //   ease: "power2.inOut",
+    // }, 11)
+    // .to("#text-5", { opacity: 1, y: 0, duration: 1 }, 11) 
+
     return () => {
       if (tl.current) tl.current.kill();
     };
