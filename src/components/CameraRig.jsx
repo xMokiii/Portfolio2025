@@ -30,11 +30,10 @@ export default function CameraRig() {
         scrub: true,
       },
     });
-  
+
     const { x, y, z, rotX, rotY, rotZ } = cameraAnimationState.current;
-  
-    // 1. Camera anim + text 1
-    
+
+    // 1. Animation de la caméra + texte 1
     tl.current.to(cameraAnimationState.current, {
       duration: 2,
       x: x,
@@ -45,9 +44,9 @@ export default function CameraRig() {
       rotZ,
       ease: "power2.out",
     }, 0)
-    .to("#text-1", { opacity: 0, y: -20, duration: 1 }, 0.35);
-  
-    // 2. Camera anim + text 2
+      .to("#text-1", { opacity: 0, y: -20, duration: 0.6 }, 0.35);
+
+    // 2. Animation de la caméra + texte 2
     tl.current.to(cameraAnimationState.current, {
       duration: 2,
       x: "+=0",
@@ -58,10 +57,10 @@ export default function CameraRig() {
       rotZ: "-=3.75",
       ease: "power2.inOut",
     }, 3)
-    .to("#text-2", { opacity: 1, y: 0, duration: 1 }, 1.7)
-    .to("#text-2", { opacity: 0, y: -20, duration: 1 }, 3);
-  
-    // 3. Camera anim + text 3
+      .to("#text-2", { opacity: 1, y: 0, duration: 0.6 }, 1.7)
+      .to("#text-2", { opacity: 0, y: -20, duration: 0.6 }, 3);
+
+    // 3. Animation de la caméra + texte 3
     tl.current.to(cameraAnimationState.current, {
       duration: 2,
       x: "+=0",
@@ -72,10 +71,13 @@ export default function CameraRig() {
       rotZ: "+=0",
       ease: "power2.inOut",
     }, 6)
-    .to("#text-3", { opacity: 1, y: 0, duration: 1 }, 4.7)
-    .to("#text-3", { opacity: 0, y: -20, duration: 1 }, 6);
-  
-    // 4. Camera anim + text 4
+      .to("#text-3", { opacity: 1, duration: 0.6 }, 4)
+      .to("#text-4", { opacity: 1, duration: 0 }, 6.9)
+      .to("#text-3", { opacity: 0, duration: 0 }, 7.1)
+      .to("#text-4", { y: 0, scale: 1.02, duration: 1, ease: "power2.out" }, 7)
+      .to("#text-4", { opacity: 0, y: -20, duration: 0.6 }, 8);
+
+    // 4. Animation de la caméra + texte 4
     tl.current.to(cameraAnimationState.current, {
       duration: 2,
       x: "-=3",
@@ -86,35 +88,25 @@ export default function CameraRig() {
       rotZ: "+=0",
       ease: "power2.inOut",
     }, 9)
-    .to("#text-4", { opacity: 1, y: 0, duration: 1 }, 7.7)
-    .to("#text-4", { opacity: 0, y: -20, duration: 1 }, 9);
-  
-    // tl.current.to(cameraAnimationState.current, {
-    //   duration: 2,
-    //   x: "-=3",
-    //   y: "-=0.3",
-    //   z: "+=0.5",
-    //   rotX: "-=4",
-    //   rotY: "+=6",
-    //   rotZ: "+=3.75",
-    //   ease: "power2.inOut",
-    // }, 11)
-    // .to("#text-5", { opacity: 1, y: 0, duration: 1 }, 11) 
+      .to("#text-4", { opacity: 1, y: 0, duration: 0.6 }, 7.7)
+      .to("#text-4", { opacity: 0, y: -20, duration: 0.6 }, 9);
 
+
+
+      
     return () => {
       if (tl.current) tl.current.kill();
     };
   }, [camera]);
-  
 
   useFrame(() => {
     if (!tl.current) return;
 
-    // Synchronize scroll offset with GSAP timeline progress
-    const scrollProgress = scroll.offset;  // Get scroll offset (0 to 1)
-    tl.current.progress(scrollProgress);  // Set the progress based on scroll
+    // Synchroniser le défilement avec la progression de la timeline GSAP
+    const scrollProgress = scroll.offset; // Obtenir la progression du défilement (0 à 1)
+    tl.current.progress(scrollProgress); // Définir la progression basée sur le défilement
 
-    // Interpolate camera position
+    // Interpolation de la position de la caméra
     targetPosition.current.set(
       gsap.utils.interpolate(camera.position.x, cameraAnimationState.current.x, 0.1),
       gsap.utils.interpolate(camera.position.y, cameraAnimationState.current.y, 0.1),
@@ -123,7 +115,7 @@ export default function CameraRig() {
 
     camera.position.lerp(targetPosition.current, 1);
 
-    // Interpolate camera rotation
+    // Interpolation de la rotation de la caméra
     targetRotation.current.set(
       gsap.utils.interpolate(camera.rotation.x, cameraAnimationState.current.rotX, 0.1),
       gsap.utils.interpolate(camera.rotation.y, cameraAnimationState.current.rotY, 0.1),
