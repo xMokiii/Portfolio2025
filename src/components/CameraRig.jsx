@@ -72,8 +72,8 @@ export default function CameraRig() {
       ease: "power2.inOut",
     }, 6)
       .to("#text-3", { opacity: 1, duration: 0.6 }, 4)
-      .to("#text-4", { opacity: 1, duration: 0 }, 6.9)
-      .to("#text-3", { opacity: 0, duration: 0 }, 7.1)
+      .to("#text-4", { opacity: 1, duration: 0 }, 7)
+      .to("#text-3", { opacity: 0, duration: 0 }, 6.9)
       .to("#text-4", { y: 0, scale: 1.02, duration: 1, ease: "power2.out" }, 7)
       .to("#text-4", { opacity: 0, y: -20, duration: 0.6 }, 8);
 

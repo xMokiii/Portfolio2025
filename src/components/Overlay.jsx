@@ -7,7 +7,7 @@ export default function Overlay() {
   return (
     <div
       id="overlay"
-      className="pointer-events-none fixed top-0 w-full h-full z-10 flex items-center justify-center px-2 lg:px-12 xl:px-16"
+      className="pointer-events-none fixed top-0 w-full h-full z-10 flex items-center justify-center px-2"
     >
       <div className="relative w-full h-full flex items-center justify-center">
 

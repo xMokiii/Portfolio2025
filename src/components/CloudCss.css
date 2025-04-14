@@ -1,0 +1,20 @@
+.contentCloud {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    perspective: 800px;
+  }
+  
+  .cloudBase {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .cloudLayer {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    transition: opacity 0.5s;
+  }
+  

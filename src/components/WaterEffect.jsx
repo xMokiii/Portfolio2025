@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import waterVertexShader from '../shaders/water.vert';
-import waterFragmentShader from '../shaders/water.frag';
+import waterVertexShader from '../shaders/water.vert';  // Import the vertex shader
+import waterFragmentShader from '../shaders/water.frag';  // Import the fragment shader
 
 const WaterEffect = ({ resolution = 512, environmentMap }) => {
   const waterRef = useRef();
@@ -17,9 +17,7 @@ const WaterEffect = ({ resolution = 512, environmentMap }) => {
     uWavesLacunarity: { value: 2.18 },
     uWavesIterations: { value: 8 },
     uWavesSpeed: { value: 0.4 },
-    uTroughColor: { value: new THREE.Color('#186691') },
-    uSurfaceColor: { value: new THREE.Color('#0077be') },
-    uPeakColor: { value: new THREE.Color('#0077be') },
+    uTroughColor: { value: new THREE.Color('#63b6fd') },
     uPeakThreshold: { value: 0.08 },
     uPeakTransition: { value: 0.05 },
     uTroughThreshold: { value: -0.01 },
@@ -29,8 +27,8 @@ const WaterEffect = ({ resolution = 512, environmentMap }) => {
   };
 
   const material = new THREE.ShaderMaterial({
-    vertexShader: waterVertexShader,
-    fragmentShader: waterFragmentShader,
+    vertexShader: waterVertexShader,  // Use the imported vertex shader
+    fragmentShader: waterFragmentShader,  // Use the imported fragment shader
     uniforms,
     transparent: true,
     depthTest: true,
@@ -46,7 +44,6 @@ const WaterEffect = ({ resolution = 512, environmentMap }) => {
   });
 
   return <mesh ref={waterRef} material={material} geometry={geometry} position={[0,-1.02,0]} rotation-x={-Math.PI / 2} />;
-  
 };
 
 export default WaterEffect;

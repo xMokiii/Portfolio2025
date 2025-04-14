@@ -1,10 +1,12 @@
+// Scene.js
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, ScrollControls } from "@react-three/drei";
 import Overlay from "./Overlay";
 import Iceberg from "./Iceberg";
 import CameraRig from "./CameraRig";
-import * as THREE from "three";
-
+import CloudGroup from "./Cloud";
+import Lights from "./Light";
+import Cylinder from "./Cylinder";
 
 export default function Scene() {
   return (
@@ -17,17 +19,21 @@ export default function Scene() {
         }}
         style={{ position: "absolute", top: 0, left: 0 }}
       >
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[0, 10, 5]} intensity={1} />
+        {/* Lumières de la scène */}
+        <Lights />
+
+        {/* Contrôles Orbit, permettant d'ajuster la vue */}
         <OrbitControls enableZoom={false} enableRotate={false} />
+
+        {/* Scroll Controls pour scroller à travers la scène */}
         <ScrollControls pages={5} damping={0.25}>
           <Iceberg />
+          <CloudGroup count={50} />
           <CameraRig />
         </ScrollControls>
-        <mesh position={[0, -61, 0]}>
-          <cylinderGeometry args={[55, 55, 120, 20, 1, true]} />
-          <meshBasicMaterial color={0x041c2c} side={THREE.DoubleSide} />
-        </mesh>
+
+        {/* Géométrie du cylindre */}
+        <Cylinder />
       </Canvas>
     </div>
   );

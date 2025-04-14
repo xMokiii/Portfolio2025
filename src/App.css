@@ -1,5 +1,7 @@
 #root {
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(to bottom, #0077be, #001f3f)
+  background: linear-gradient(to bottom, #69b7f5 0%, #aee2ff 50%, #ffffff 100%);
+
+
 }
