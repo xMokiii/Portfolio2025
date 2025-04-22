@@ -1,29 +1,27 @@
-{
-    "projets": [
+[
       {
         "titre": "Projet Alpha",
         "description": "Description du projet Alpha, très innovant.",
         "date": "Janvier 2024",
-        "image": "https://picsum.photos/id/1015/1200/800"
+        "image": "https://picsum.photos/200/300"
       },
       {
         "titre": "Projet Beta",
         "description": "Une autre idée brillante pour le futur.",
         "date": "Mars 2024",
-        "image": "https://picsum.photos/id/1016/1200/800"
+        "image": "https://picsum.photos/200/300"
       },
       {
         "titre": "Projet Gamma",
         "description": "Combinaison de technologie et de design.",
         "date": "Avril 2024",
-        "image": "https://picsum.photos/id/1021/1200/800"
+        "image": "https://picsum.photos/200/300"
       },
       {
         "titre": "Projet Delta",
         "description": "Le projet le plus ambitieux jusqu'ici.",
         "date": "Mai 2024",
-        "image": "https://picsum.photos/id/1035/1200/800"
+        "image": "/src/assets/img/alpha.jpg"
       }
-    ]
-  }
-  
+
+]

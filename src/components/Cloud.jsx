@@ -14,7 +14,7 @@ const CloudSprite = ({ position, rotationSpeed, scale }) => {
 
   return (
     <sprite ref={ref} position={position} scale={scale}>
-      <spriteMaterial attach="material" map={texture} transparent opacity={0.7} />
+      <spriteMaterial attach="material" map={texture} transparent opacity={0.7}/>
     </sprite>
   );
 };

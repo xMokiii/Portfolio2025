@@ -1,43 +1,7 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useRef } from "react";
+import projects from "../assets/json/feur.json";
 
 export default function Overlay() {
-  const [projects, setProjects] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const scrollTimeout = useRef(null);
-
-  useEffect(() => {
-    fetch("/feur.json")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.projets && data.projets.length > 0) {
-          setProjects(data.projets);
-        }
-      })
-      .catch((err) => console.error("Erreur de chargement :", err));
-  }, []);
-
-  useEffect(() => {
-    const handleWheel = (e) => {
-      if (scrollTimeout.current) return;
-
-      setCurrentIndex((prev) => {
-        if (e.deltaY > 0) {
-          return (prev + 1) % projects.length;
-        } else {
-          return (prev - 1 + projects.length) % projects.length;
-        }
-      });
-
-      scrollTimeout.current = setTimeout(() => {
-        scrollTimeout.current = null;
-      }, 700);
-    };
-
-    window.addEventListener("wheel", handleWheel);
-    return () => window.removeEventListener("wheel", handleWheel);
-  }, [projects]);
-
-  if (projects.length === 0) return null;
 
   return (
     <div
@@ -118,35 +82,23 @@ export default function Overlay() {
         {/* Bloc text-5 modifié pour effet slide horizontal */}
         <div
           id="text-5"
-          className="left-[16.66%] w-auto max-w-full lg:max-w-lg xl:max-w-xl h-auto overflow-hidden absolute rounded-2xl"
+          className="left-[16.66%] w-auto max-w-full lg:max-w-lg xl:max-w-xl h-auto overflow-hidden absolute rounded-2xl opacity-0"
         >
-          <div
-            className="flex transition-transform duration-700 ease-in-out"
-            style={{
-              transform: `translateX(-${currentIndex * 100}%)`,
-              width: `${projects.length * 100}%`,
-            }}
-          >
-            {projects.map((project, index) => (
-              <div
-                key={index}
-                className="bg-white shadow-2xl w-full p-8 xl:p-10 h-auto flex flex-row items-center gap-6 shrink-0"
-                style={{ width: `${100 / projects.length}%` }}
-              >
-                <div className="w-full h-full relative">
-                  <img
-                    src={project.image}
-                    alt={project.titre}
-                    className="w-full h-full object-cover rounded-2xl"
-                  />
-                  <div className="absolute bottom-0 bg-black/60 text-white p-4 w-full">
-                    <h2 className="text-xl md:text-2xl font-bold">{project.titre}</h2>
-                    <p className="text-sm md:text-base">{project.description}</p>
-                    <span className="text-xs text-gray-300">{project.date}</span>
+          <div className="bg-white rounded-2xl shadow-lg p-8 xl:p-10 h-auto overflow-hidden flex flex-col items-center justify-center">
+            <div className="flex flex-nowrap space-x-10 w-full h-full" id="projects">
+              {projects.map((projet, index) => (
+                <div
+                  key={index}
+                  className="min-w-full h-full bg-cover bg-center relative p-6"
+                >
+                  <img src={projet.image} alt={projet.titre} className="absolute z-0  w-full h-full object-cover" />
+                  <div className="relative z-10 text-white text-center h-full flex flex-col justify-center items-center bg-slate-900 bg-opacity-50 rounded-lg p-4">
+                    <h2 className="text-3xl font-bold">{projet.titre}</h2>
+                    <p className="mt-4 text-lg">{projet.description}</p>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 

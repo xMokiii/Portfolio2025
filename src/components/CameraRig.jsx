@@ -72,7 +72,8 @@ export default function CameraRig() {
     .to("#text-4", { opacity: 1, duration: 0 }, 7)
     .to("#text-3", { opacity: 0, duration: 0 }, 6.9)
     .to("#text-4", { y: 0, scale: 1.02, duration: 1, ease: "power2.out" }, 7)
-    .to("#text-4", { opacity: 0, y: -20, duration: 0.6 }, 8);
+    .to("#text-4", { opacity: 0, y: -20, duration: 0.6 }, 8)
+    .to("#projects", { opacity: 1, x: -1620, duration: 3 ,ease: "power2.in" }, 12);
 
     // 4. Transition vers text-5
     tl.current.to(cameraAnimationState.current, {
@@ -83,6 +84,15 @@ export default function CameraRig() {
       rotY: "+=3",
       ease: "power2.inOut",
     }, 9);
+
+    tl.current.to(cameraAnimationState.current, {
+      duration: 2,
+      x: "-=0",
+      y: "-=2",
+      z: "-=2",
+      rotY: "-=3",
+      ease: "power2.inOut",
+    }, 12);
 
     // Apparition de #text-5 uniquement
     tl.current.to("#text-5", {
