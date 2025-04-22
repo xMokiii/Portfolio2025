@@ -4,7 +4,7 @@ import * as THREE from "three";
 
 const CloudSprite = ({ position, rotationSpeed, scale }) => {
   const ref = useRef();
-  const texture = useMemo(() => new THREE.TextureLoader().load("public/cloud.png"), []);
+  const texture = useMemo(() => new THREE.TextureLoader().load("cloud.png"), []);
 
   useFrame(() => {
     if (ref.current) {
