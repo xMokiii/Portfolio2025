@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import projects from "../assets/json/feur.json";
+import Gallery from './Gallery'
 
 export default function Overlay() {
 
@@ -78,29 +79,54 @@ export default function Overlay() {
             Plongeons au coeur du sujet.
           </h1>
         </div>
-
-        {/* Bloc text-5 modifié pour effet slide horizontal */}
         <div
           id="text-5"
-          className="left-[16.66%] w-auto max-w-full lg:max-w-lg xl:max-w-xl h-auto overflow-hidden absolute rounded-2xl opacity-0"
+          className="right-[16.66%] w-full max-w-full lg:max-w-[33%] h-auto absolute rounded-2xl opacity-0"
         >
-          <div className="bg-white rounded-2xl shadow-lg p-8 xl:p-10 h-auto overflow-hidden flex flex-col items-center justify-center">
-            <div className="flex flex-nowrap space-x-10 w-full h-full" id="projects">
+          <div className="bg-white rounded-2xl shadow-lg p-8 overflow-hidden flex flex-col items-center justify-center h-auto">
+            <h1 className="text-2xl lg:text-3xl xl:text-5xl font-bold mb-3 text-gray-800">
+              Mes compétences
+            </h1>
+            <Gallery autoplay={true} pauseOnHover={true} />
+          </div>
+        </div>
+        {/* Bloc text-5 modifié pour effet slide horizontal */}
+        <div
+          id="text-6"
+          className="left-[16.66%] w-full max-w-full lg:max-w-[33%] h-auto absolute rounded-2xl opacity-0"
+        >
+          <div className="bg-white rounded-2xl shadow-lg p-8 overflow-hidden flex flex-col items-center justify-center">
+            <div
+              className="flex flex-nowrap space-x-10 w-full h-full"
+              id="projects"
+            >
               {projects.map((projet, index) => (
                 <div
                   key={index}
-                  className="min-w-full h-full bg-cover bg-center relative p-6"
+                  className="min-w-full h-auto relative"
                 >
-                  <img src={projet.image} alt={projet.titre} className="absolute z-0  w-full h-full object-cover" />
-                  <div className="relative z-10 text-white text-center h-full flex flex-col justify-center items-center bg-slate-900 bg-opacity-50 rounded-lg p-4">
-                    <h2 className="text-3xl font-bold">{projet.titre}</h2>
-                    <p className="mt-4 text-lg">{projet.description}</p>
+                  {/* Conteneur avec image + overlay */}
+                  <div className="w-full h-[30vh] sm:h-[35vh] md:h-[40vh] lg:h-[33vh] relative overflow-hidden rounded-2xl">
+                    {/* Image en fond */}
+                    <img
+                      src={projet.image}
+                      alt={projet.titre}
+                      className="absolute top-0 left-0 w-full h-full object-cover"
+                    />
+
+                    {/* Overlay texte */}
+                    <div className="absolute inset-0 bg-slate-900 bg-opacity-50 flex flex-col justify-center items-center text-white text-center p-4 z-10">
+                      <h2 className="text-3xl font-bold">{projet.titre}</h2>
+                      <p className="mt-4 text-lg">{projet.description}</p>
+                      <a href={projet.url}  className="mt-4 text-lg">{projet.urltexte}</a>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
         </div>
+
 
       </div>
     </div>

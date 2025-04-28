@@ -1,27 +1,36 @@
 [
       {
-        "titre": "Projet Alpha",
-        "description": "Description du projet Alpha, très innovant.",
-        "date": "Janvier 2024",
-        "image": "https://picsum.photos/200/300"
+        "titre": "Stage IRTS",
+        "description": "Simulation d'un support de formation en réalité virtuelle pour le travail social, présenté lors d'un colloque.",
+        "date": "Juin 2024",
+        "image": "https://picsum.photos/200/300",
+        "urltexte": "Vidéo présentation amphithéâtre",
+        "url": "https://youtu.be/tghSiWsBJT4?t=1520" 
+      }
+      ,
+      {
+        "titre": "Stage Epsi",
+        "description": "Déploiement complet d'une infrastructure serveur Minecraft et création d'animations interactives pour un atelier pédagogique.",
+        "date": "Février 2025",
+        "image": "https://picsum.photos/200/300",
+        "urltexte": "Vidéo présentation amphithéâtre",
+        "url": "https://youtu.be/tghSiWsBJT4?t=1520"
       },
       {
-        "titre": "Projet Beta",
-        "description": "Une autre idée brillante pour le futur.",
-        "date": "Mars 2024",
-        "image": "https://picsum.photos/200/300"
+        "titre": "Projet Epsi.fun ",
+        "description": "Refonte architecturale sur Nuxt d'un site de jeux webs développé pendant le workshop en début d'année.",
+        "date": "Mars 2025",
+        "image": "https://picsum.photos/200/300",
+        "urltexte": "Vidéo présentation amphithéâtre",
+        "url": "https://youtu.be/tghSiWsBJT4?t=1520"
       },
       {
-        "titre": "Projet Gamma",
-        "description": "Combinaison de technologie et de design.",
-        "date": "Avril 2024",
-        "image": "https://picsum.photos/200/300"
-      },
-      {
-        "titre": "Projet Delta",
-        "description": "Le projet le plus ambitieux jusqu'ici.",
-        "date": "Mai 2024",
-        "image": "/src/assets/img/alpha.jpg"
+        "titre": "Projet Solution Applicative",
+        "description": "Web app pour entreprises destinés aux salariés afin de les aider à gérer leur empreinte Carbonne.",
+        "date": "Mai 2025",
+        "image": "https://picsum.photos/200/300",
+        "urltexte": "Vidéo présentation amphithéâtre",
+        "url": "https://youtu.be/tghSiWsBJT4?t=1520"
       }
 
 ]
