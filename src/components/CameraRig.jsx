@@ -1,6 +1,6 @@
 import { useThree, useFrame } from "@react-three/fiber";
 import { useScroll } from "@react-three/drei";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import * as THREE from "three";
@@ -24,102 +24,131 @@ export default function CameraRig() {
   const targetRotation = useRef(new THREE.Euler());
   const tl = useRef();
 
+  const [scrollAmount, setScrollAmount] = useState(0);
+
+  // 🔁 Recalculate scroll width on resize
   useEffect(() => {
+    function calculateScrollAmount() {
+      const projectsEl = document.getElementById("projects");
+      if (projectsEl) {
+        const parentWidth = projectsEl.parentElement.offsetWidth;
+        const totalScrollWidth = projectsEl.scrollWidth;
+    
+        const paddingAfter = 60; 
+    
+        const amount = totalScrollWidth - parentWidth + paddingAfter;
+        setScrollAmount(amount > 0 ? amount : 0);
+      }
+    }
+
+    calculateScrollAmount();
+    window.addEventListener("resize", calculateScrollAmount);
+    return () => window.removeEventListener("resize", calculateScrollAmount);
+  }, []);
+
+  useEffect(() => {
+    if (tl.current) tl.current.kill();
+
     tl.current = gsap.timeline({
       scrollTrigger: {
         trigger: scroll.el,
         start: "top top",
         end: "bottom bottom",
         scrub: true,
+        onUpdate: (self) => {
+          if (self.progress > 1) self.scroll(self.end); // clamp to end
+        },
       },
     });
 
     const { x, y, z, rotX, rotY, rotZ } = cameraAnimationState.current;
 
-    // 1. Texte 1
-    tl.current.to(cameraAnimationState.current, {
-      duration: 2,
-      x,
-      y: y - 0.2,
-      z: z - 2,
-      rotX,
-      rotY: rotY + 6,
-      rotZ,
-      ease: "power2.out",
-    }, 0)
-    .to("#text-1", { opacity: 0, y: -20, duration: 0.6 }, 0.35);
+    tl.current
+      .to(cameraAnimationState.current, {
+        duration: 2,
+        x,
+        y: y - 0.2,
+        z: z - 2,
+        rotX,
+        rotY: rotY + 6,
+        rotZ,
+        ease: "power2.out",
+      }, 0)
+      .to("#text-1", { opacity: 0, y: -20, duration: 0.6 }, 0.35)
 
-    // 2. Texte 2
-    tl.current.to(cameraAnimationState.current, {
-      duration: 2,
-      y: "-=0.4",
-      z: "-=1.5",
-      rotX: "+=4",
-      rotY: "-=10",
-      rotZ: "-=3.75",
-      ease: "power2.inOut",
-    }, 3)
-    .to("#text-2", { opacity: 1, y: 0, duration: 0.6 }, 1.7)
-    .to("#text-2", { opacity: 0, y: -20, duration: 0.6 }, 3);
+      .to(cameraAnimationState.current, {
+        duration: 2,
+        y: "-=0.4",
+        z: "-=1.5",
+        rotX: "+=4",
+        rotY: "-=10",
+        rotZ: "-=3.75",
+        ease: "power2.inOut",
+      }, 3)
+      .to("#text-2", { opacity: 1, y: 0, duration: 0.6 }, 1.7)
+      .to("#text-2", { opacity: 0, y: -20, duration: 0.6 }, 3)
 
-    // 3. Texte 3 & 4
-    tl.current.to(cameraAnimationState.current, {
-      duration: 2,
-      y: "-=1",
-      ease: "power2.inOut",
-    }, 6)
-    .to("#text-3", { opacity: 1, duration: 0.6 }, 4)
-    .to("#text-4", { opacity: 1, duration: 0 }, 7)
-    .to("#text-3", { opacity: 0, duration: 0 }, 6.9)
-    .to("#text-4", { y: 0, scale: 1.02, duration: 1, ease: "power2.out" }, 7)
-    .to("#text-4", { opacity: 0, y: -20, duration: 0.6 }, 8)
-    .to("#text-5", { opacity: 1, duration: 0.6 }, 11)
-    .to("#text-5", { opacity: 0, duration: 0.6 }, 13)
-    .to("#projects", { opacity: 1, x: -1620, duration: 3 ,ease: "power2.in" }, 15);
+      .to(cameraAnimationState.current, {
+        duration: 2,
+        y: "-=1",
+        ease: "power2.inOut",
+      }, 6)
+      .to("#text-3", { opacity: 1, duration: 0.6 }, 4)
+      .to("#text-4", { opacity: 1, duration: 0 }, 7)
+      .to("#text-3", { opacity: 0, duration: 0 }, 6.9)
+      .to("#text-4", { y: 0, scale: 1.02, duration: 1, ease: "power2.out" }, 7)
+      .to("#text-4", { opacity: 0, y: -20, duration: 0.6 }, 8)
+      .to("#text-5", { opacity: 1, duration: 0.6 }, 11)
+      .to("#text-5", { opacity: 0, duration: 0.6 }, 13)
 
-    // 4. Transition vers text-5
-    tl.current.to(cameraAnimationState.current, {
-      duration: 2,
-      x: "-=3",
-      y: "-=1",
-      z: "-=1.5",
-      rotY: "+=5",
-      ease: "power2.inOut",
-    }, 9);
+      .to("#text-6", {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "power2.out",
+      }, 14)
 
-    tl.current.to(cameraAnimationState.current, {
-      duration: 2,
-      x: "+=1.5",
-      y: "-=1.5",
-      z: "+=0.5",
-      rotX: "+=2",
-      rotY: "-=4.5",
-      ease: "power2.inOut",
-    }, 12);
+      // ✅ Use dynamic scrollAmount here
+      .to("#projects", {
+        opacity: 1,
+        x: -scrollAmount,
+        duration: 2,
+        ease: "power2.in",
+      }, 15)
 
-    tl.current.to(cameraAnimationState.current, {
-      duration: 3,
-      x: "+=3.5",
-      y: "-=0",
-      z: "+=2",
-      rotX: "+=2",
-      rotY: "+=0",
-      ease: "power2.inOut",
-    }, 15);
+      .to(cameraAnimationState.current, {
+        duration: 2,
+        x: "-=3",
+        y: "-=1",
+        z: "-=1.5",
+        rotY: "+=5",
+        ease: "power2.inOut",
+      }, 9)
 
+      .to(cameraAnimationState.current, {
+        duration: 2,
+        x: "+=1.5",
+        y: "-=1.5",
+        z: "+=0.5",
+        rotX: "+=2",
+        rotY: "-=4.5",
+        ease: "power2.inOut",
+      }, 12)
 
-    // Apparition de #text-5 uniquement
-    tl.current.to("#text-6", {
-      opacity: 1,
-      y: 0,
-      duration: 0.6,
-      ease: "power2.out",
-    }, 14);
+      .to(cameraAnimationState.current, {
+        duration: 3,
+        x: "+=3.5",
+        y: "-=0",
+        z: "+=2",
+        rotX: "+=2",
+        rotY: "+=0",
+        ease: "power2.inOut",
+      }, 15)
 
     return () => {
       if (tl.current) tl.current.kill();
     };
-  }, [camera]);
+  }, [camera, scrollAmount]);
 
   useFrame(() => {
     if (!tl.current) return;

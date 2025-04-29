@@ -3,7 +3,7 @@ import projects from "../assets/json/feur.json";
 import Gallery from './Gallery'
 
 export default function Overlay() {
-
+  const projectsRef = useRef(null);
   return (
     <div
       id="overlay"
@@ -99,6 +99,7 @@ export default function Overlay() {
             <div
               className="flex flex-nowrap space-x-10 w-full h-full"
               id="projects"
+              ref={projectsRef}
             >
               {projects.map((projet, index) => (
                 <div

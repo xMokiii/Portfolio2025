@@ -49,7 +49,7 @@ const Gallery = ({
   const radius = cylinderWidth / (2 * Math.PI);
 
   // Framer Motion
-  const dragFactor = 0.05;
+  const dragFactor = 0.01;
   const rotation = useMotionValue(0);
   const controls = useAnimation();
 
@@ -116,7 +116,7 @@ const Gallery = ({
   };
 
   return (
-    <div className="pointer-events-auto relative w-full overflow-hidden">
+    <div className="relative w-full overflow-hidden">
       <div
         className="absolute top-0 left-0 h-full w-[48px] z-10"
         style={{

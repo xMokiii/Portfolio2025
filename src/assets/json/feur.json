@@ -3,7 +3,7 @@
         "titre": "Stage IRTS",
         "description": "Simulation d'un support de formation en réalité virtuelle pour le travail social, présenté lors d'un colloque.",
         "date": "Juin 2024",
-        "image": "https://picsum.photos/200/300",
+        "image": "/IRTS.png",
         "urltexte": "Vidéo présentation amphithéâtre",
         "url": "https://youtu.be/tghSiWsBJT4?t=1520" 
       }
@@ -12,25 +12,19 @@
         "titre": "Stage Epsi",
         "description": "Déploiement complet d'une infrastructure serveur Minecraft et création d'animations interactives pour un atelier pédagogique.",
         "date": "Février 2025",
-        "image": "https://picsum.photos/200/300",
-        "urltexte": "Vidéo présentation amphithéâtre",
-        "url": "https://youtu.be/tghSiWsBJT4?t=1520"
+        "image": "/CodingEtGaming.png"
       },
       {
         "titre": "Projet Epsi.fun ",
         "description": "Refonte architecturale sur Nuxt d'un site de jeux webs développé pendant le workshop en début d'année.",
         "date": "Mars 2025",
-        "image": "https://picsum.photos/200/300",
-        "urltexte": "Vidéo présentation amphithéâtre",
-        "url": "https://youtu.be/tghSiWsBJT4?t=1520"
+        "image": "/Epsifun.png"
       },
       {
         "titre": "Projet Solution Applicative",
-        "description": "Web app pour entreprises destinés aux salariés afin de les aider à gérer leur empreinte Carbonne.",
+        "description": "Web app en Nuxt pour entreprises destinés aux salariés afin de les aider à gérer leur empreinte Carbonne.",
         "date": "Mai 2025",
-        "image": "https://picsum.photos/200/300",
-        "urltexte": "Vidéo présentation amphithéâtre",
-        "url": "https://youtu.be/tghSiWsBJT4?t=1520"
+        "image":"Ecotrack.png"
       }
 
 ]
