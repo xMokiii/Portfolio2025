@@ -8,19 +8,19 @@ import {
 
 // Import des logos depuis le dossier public
 const IMGS = [
-  { src: "/public/skills/react.svg", alt: "Logo React", name: "React" },
-  { src: "/public/skills/javascript.svg", alt: "Logo JavaScript", name: "JavaScript" },
-  { src: "/public/skills/html.svg", alt: "Logo HTML", name: "HTML" },
-  { src: "/public/skills/css.svg", alt: "Logo CSS", name: "CSS" },
-  { src: "/public/skills/php.svg", alt: "Logo PHP", name: "PHP" },
-  { src: "/public/skills/python.svg", alt: "Logo Python", name: "Python" },
-  { src: "/public/skills/sql.svg", alt: "Logo SQL Database", name: "SQL" },
-  { src: "/public/skills/csharp.svg", alt: "Logo C#", name: "C#" },
-  { src: "/public/skills/git.svg", alt: "Logo Git", name: "Git" },
-  { src: "/public/skills/jira.svg", alt: "Logo Jira", name: "Jira" },
-  { src: "/public/skills/vue.svg", alt: "Logo Vue", name: "Vue" },
-  { src: "/public/skills/nuxt.svg", alt: "Logo Nuxt", name: "Nuxt" },
-  { src: "/public/skills/supabase.svg", alt: "Logo Supabase", name: "Supabase" },
+  { src: "/skills/react.svg", alt: "Logo React", name: "React" },
+  { src: "/skills/javascript.svg", alt: "Logo JavaScript", name: "JavaScript" },
+  { src: "/skills/html.svg", alt: "Logo HTML", name: "HTML" },
+  { src: "/skills/css.svg", alt: "Logo CSS", name: "CSS" },
+  { src: "/skills/php.svg", alt: "Logo PHP", name: "PHP" },
+  { src: "/skills/python.svg", alt: "Logo Python", name: "Python" },
+  { src: "/skills/sql.svg", alt: "Logo SQL Database", name: "SQL" },
+  { src: "/skills/csharp.svg", alt: "Logo C#", name: "C#" },
+  { src: "/skills/git.svg", alt: "Logo Git", name: "Git" },
+  { src: "/skills/jira.svg", alt: "Logo Jira", name: "Jira" },
+  { src: "/skills/vue.svg", alt: "Logo Vue", name: "Vue" },
+  { src: "/skills/nuxt.svg", alt: "Logo Nuxt", name: "Nuxt" },
+  { src: "/skills/supabase.svg", alt: "Logo Supabase", name: "Supabase" },
 
 ];
 
