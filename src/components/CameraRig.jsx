@@ -94,27 +94,45 @@ export default function CameraRig() {
         ease: "power2.inOut",
       }, 6)
       .to("#text-3", { opacity: 1, duration: 0.6 }, 4)
-      .to("#text-4", { opacity: 1, duration: 0 }, 7)
+      .to("#text-4", { opacity: 1, duration: 0, }, 7)
       .to("#text-3", { opacity: 0, duration: 0 }, 6.9)
       .to("#text-4", { y: 0, scale: 1.02, duration: 1, ease: "power2.out" }, 7)
-      .to("#text-4", { opacity: 0, y: -20, duration: 0.6 }, 8)
-      .to("#text-5", { opacity: 1, duration: 0.6 }, 11)
-      .to("#text-5", { opacity: 0, duration: 0.6 }, 13)
+      .to("#text-4", { opacity: 0, y: -20, duration: 0.6 }, 9)
+      .to("#text-5", { opacity: 1, duration: 0.6,
+        onStart: () => {
+          document.getElementById("text-5").style.pointerEvents = "auto";
+        },
+        onReverseComplete: () => {
+          document.getElementById("text-5").style.pointerEvents = "none";
+        }, }, 11)
+      .to("#text-5", { opacity: 0, duration: 0.6,
+        onStart: () => {
+          document.getElementById("text-5").style.pointerEvents = "none";
+        }, }, 13)
 
       .to("#text-6", {
         opacity: 1,
         y: 0,
         duration: 0.6,
-        ease: "power2.out",
       }, 14)
 
-      // ✅ Use dynamic scrollAmount here
       .to("#projects", {
         opacity: 1,
         x: -scrollAmount,
-        duration: 2,
-        ease: "power2.in",
-      }, 15)
+        duration: 6,
+      }, 16)
+
+      .to("#text-6", {
+        opacity: 0,
+        y: 0,
+        duration: 0.6,
+      }, 23)
+
+      .to("#text-7", {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+      }, 25)
 
       .to(cameraAnimationState.current, {
         duration: 2,
@@ -133,17 +151,27 @@ export default function CameraRig() {
         rotX: "+=2",
         rotY: "-=4.5",
         ease: "power2.inOut",
-      }, 12)
+      }, 13)
+
+      .to(cameraAnimationState.current, {
+        duration: 6,
+        x: "+=5",
+        y: "-=0",
+        z: "+=4",
+        rotX: "-=2",
+        rotY: "+=5.5",
+        ease: "power2.inOut",
+      }, 15)
 
       .to(cameraAnimationState.current, {
         duration: 3,
-        x: "+=3.5",
-        y: "-=0",
-        z: "+=2",
+        x: "-=4",
+        y: "-=1",
+        z: "-=4",
         rotX: "+=2",
-        rotY: "+=0",
+        rotY: "+=2",
         ease: "power2.inOut",
-      }, 15)
+      }, 23)
 
     return () => {
       if (tl.current) tl.current.kill();
