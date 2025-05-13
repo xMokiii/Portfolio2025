@@ -14,7 +14,7 @@ export default function Overlay() {
           className="left-[16.66%] bg-white rounded-2xl shadow-2xl w-auto max-w-full lg:max-w-lg xl:max-w-xl opacity-1 p-8 xl:p-10 h-auto overflow-hidden absolute flex flex-row items-center gap-6">
           <div className="flex-1">
             <h1 className="text-xl lg:text-2xl xl:text-3xl font-medium mb-3">
-              Bonjour, je suis <span className="text-3xl lg:text-4xl xl:text-6xl font-bold"><br/>Colin Morlion</span>
+              Bonjour, je suis <span className="text-3xl lg:text-4xl xl:text-6xl font-bold"><br />Colin Morlion</span>
             </h1>
             <p className="text-base lg:text-lg xl:text-xl text-gray-600 mb-6 break-words">
               En chair et en écaille !
@@ -36,10 +36,10 @@ export default function Overlay() {
         <div
           id="text-2"
           className="right-[16.66%] bg-white rounded-2xl shadow-lg w-auto max-w-full lg:max-w-lg xl:max-w-xl opacity-0 p-8 xl:p-10 h-auto overflow-hidden absolute animate-fade-in">
-          <h1 className="text-2xl lg:text-3xl xl:text-4xl text-center font-bold mb-3 text-gray-800">
+          <h1 className="text-2xl lg:text-3xl xl:text-4xl text-center font-bold mb-3">
             À propos de moi
           </h1>
-          <p className="text-base lg:text-lg xl:text-xl text-gray-600 mb-6 break-words">
+          <p className="text-base lg:text-lg xl:text-xl text-gray-900 mb-6 break-words">
             <span className="block">
               🏃‍♂️ <span className="font-bold">Actif et passionné</span> - Sportif : Volley-ball, football et tennis.
             </span>
@@ -77,7 +77,7 @@ export default function Overlay() {
           className="right-[16.66%] w-full max-w-full lg:max-w-[33%] h-auto absolute rounded-2xl opacity-0"
         >
           <div className="bg-white rounded-2xl shadow-lg p-8 overflow-hidden flex flex-col items-center justify-center h-auto">
-            <h1 className="text-2xl lg:text-3xl xl:text-5xl font-bold mb-3 text-gray-800">
+            <h1 className="text-2xl lg:text-3xl xl:text-5xl font-bold mb-3">
               Mes compétences
             </h1>
             <Gallery autoplay={true} pauseOnHover={true} />
@@ -105,10 +105,15 @@ export default function Overlay() {
                       alt={projet.titre}
                       className="absolute top-0 left-0 w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-slate-900 bg-opacity-50 flex flex-col justify-center items-center text-white text-center p-4 z-10">
+                    <div className="absolute inset-0 bg-slate-900 bg-opacity-55 flex flex-col justify-center items-center font-450 text-white text-center p-4 z-10">
                       <h2 className="text-3xl font-bold">{projet.titre}</h2>
                       <p className="mt-4 text-lg">{projet.description}</p>
-                      <a href={projet.url} className="mt-4 text-lg">{projet.urltexte}</a>
+                      <a href={projet.url}
+                        target="_blank"
+                        id="url"
+                        className={`mt-4 text-lg font-bold underline hover:text-bold`}>
+                        {projet.urltexte}
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -116,18 +121,50 @@ export default function Overlay() {
             </div>
           </div>
         </div>
-        <div
-          id="text-7"
-          className="right-[16.66%] bg-white rounded-2xl shadow-2xl w-auto max-w-full lg:max-w-lg xl:max-w-xl opacity-0 p-8 xl:p-10 h-auto overflow-hidden absolute flex flex-row items-center gap-6">
-          <div className="flex-1">
-            <h1 className="text-2xl lg:text-3xl xl:text-6xl font-bold mb-3">
-              Contactez-moi !
-            </h1>
-            <p className="text-sm lg:text-base xl:text-lg text-gray-600 mb-6 break-words">
-              Developped by Colin Morlion
-            </p>
-            <p className="mt-3 text-base text-center lg:text-lg xl:text-2xl">Email : morlioncolin@gmail.com</p>
+        <div id="text-7" className="absolute right-[16.66%] bg-white rounded-2xl shadow-xl opacity-0 p-6 md:p-10 flex flex-col md:flex-row items-center gap-6">
+          {/* Image à gauche */}
+          <img
+            src="/colinphotocv.png"
+            alt="Portrait de Colin Morlion"
+            className="w-28 h-44 lg:w-48 lg:h-64 xl:w-62 xl:h-80 object-cover rounded-full shadow-lg"
+          />
 
+          {/* Contenu à droite */}
+          <div className="flex-1 text-center md:text-left">
+            <h1 className="text-3xl xl:text-4xl 2xl:text-5xl font-bold mb-1">Contactez-moi !</h1>
+            <p className="text-gray-500 text-base mb-4">Developed by Colin Morlion</p>
+
+            <p className="text-base mb-2">
+              <strong>Email :</strong> morlioncolin@gmail.com
+            </p>
+
+            <p className="text-base mb-2">
+              <strong>Téléphone :</strong> 06 31 83 24 46
+            </p>
+
+            <p className="text-base mb-2">
+              <strong>LinkedIn :</strong>{" "}
+              <a
+                href="https://www.linkedin.com/in/colin-morlion-8a11ba2a1/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 underline"
+              >
+                Colin Morlion
+              </a>
+            </p>
+
+            <p className="text-base">
+              <strong>GitHub :</strong>{" "}
+              <a
+                href="https://github.com/xMokiii/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 underline"
+              >
+                xMokiii
+              </a>
+            </p>
           </div>
         </div>
 

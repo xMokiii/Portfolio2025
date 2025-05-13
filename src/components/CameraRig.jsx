@@ -108,7 +108,10 @@ export default function CameraRig() {
       .to("#text-5", { opacity: 0, duration: 0.6,
         onStart: () => {
           document.getElementById("text-5").style.pointerEvents = "none";
-        }, }, 13)
+        }, 
+        onReverseComplete: () => {
+          document.getElementById("text-5").style.pointerEvents = "auto";
+        } }, 13)
 
       .to("#text-6", {
         opacity: 1,
@@ -116,11 +119,21 @@ export default function CameraRig() {
         duration: 0.6,
       }, 14)
 
+
       .to("#projects", {
         opacity: 1,
         x: -scrollAmount,
         duration: 6,
       }, 16)
+
+      .to("#url", {
+        onStart: () => {
+          document.getElementById("url").style.pointerEvents = "auto";
+        },
+        onReverseComplete: () => {
+          document.getElementById("url").style.pointerEvents = "none";
+        },
+      }, 14)
 
       .to("#text-6", {
         opacity: 0,
@@ -131,7 +144,12 @@ export default function CameraRig() {
       .to("#text-7", {
         opacity: 1,
         y: 0,
-        duration: 0.6,
+        duration: 0.6,onStart: () => {
+          document.getElementById("text-7").style.pointerEvents = "auto";
+        },
+        onReverseComplete: () => {
+          document.getElementById("text-7").style.pointerEvents = "none";
+        },
       }, 25)
 
       .to(cameraAnimationState.current, {
