@@ -117,6 +117,12 @@ export default function CameraRig() {
         opacity: 1,
         y: 0,
         duration: 0.6,
+        onStart: () => {
+          document.getElementById("text-6").style.pointerEvents = "auto";
+        },
+        onReverseComplete: () => {
+          document.getElementById("text-6").style.pointerEvents = "none";
+        },
       }, 14)
 
 
@@ -139,6 +145,12 @@ export default function CameraRig() {
         opacity: 0,
         y: 0,
         duration: 0.6,
+        onStart: () => {
+          document.getElementById("text-6").style.pointerEvents = "none";
+        },
+        onReverseComplete: () => {
+          document.getElementById("text-6").style.pointerEvents = "auto";
+        },
       }, 23)
 
       .to("#text-7", {

@@ -1,9 +1,11 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import projects from "../assets/json/datas.json";
 import Gallery from './Gallery'
 
 export default function Overlay() {
   const projectsRef = useRef(null);
+  const [flippedIndex, setFlippedIndex] = useState(null); // Ajouté
+
   return (
     <div
       id="overlay"
@@ -97,23 +99,44 @@ export default function Overlay() {
               {projects.map((projet, index) => (
                 <div
                   key={index}
-                  className="min-w-full h-auto relative"
+                  className={`min-w-full h-auto relative flip-card${flippedIndex === index ? " flipped" : ""}`}
+                  onClick={() => setFlippedIndex(flippedIndex === index ? null : index)}
+                  style={{ cursor: "pointer" }}
                 >
-                  <div className="w-full h-[30vh] sm:h-[35vh] md:h-[40vh] lg:h-[33vh] relative overflow-hidden rounded-2xl">
-                    <img
-                      src={projet.image}
-                      alt={projet.titre}
-                      className="absolute top-0 left-0 w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-slate-900 bg-opacity-55 flex flex-col justify-center items-center font-450 text-white text-center p-4 z-10">
-                      <h2 className="text-3xl font-bold">{projet.titre}</h2>
-                      <p className="mt-4 text-lg">{projet.description}</p>
-                      <a href={projet.url}
-                        target="_blank"
-                        id="url"
-                        className={`mt-4 text-lg font-bold underline hover:text-bold`}>
-                        {projet.urltexte}
-                      </a>
+                  <div className="flip-card-inner w-full h-[30vh] sm:h-[35vh] md:h-[40vh] lg:h-[33vh] rounded-2xl">
+                    {/* Face avant */}
+                    <div className="flip-card-front w-full h-full rounded-2xl overflow-hidden">
+                      <img
+                        src={projet.image}
+                        alt={projet.titre}
+                        className="absolute top-0 left-0 w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-slate-900 bg-opacity-55 flex flex-col justify-center items-center font-450 text-white text-center p-4 z-10">
+                        <h2 className="text-3xl font-bold">{projet.titre}</h2>
+                        <p className="mt-4 text-lg">{projet.description}</p>
+                        <a href={projet.url}
+                          target="_blank"
+                          id="url"
+                          className="mt-4 text-lg font-bold underline hover:text-bold">
+                          {projet.urltexte}
+                        </a>
+                      </div>
+                    </div>
+                    {/* Face arrière */}
+                    <div className="flip-card-back w-full h-full rounded-2xl flex flex-col justify-center items-center bg-gray-800 text-white p-4">
+                      <h2 className="text-4xl font-bold mb-2">{projet.titre}</h2>
+                      <h3 className="text-xl text-gray-400 mb-2">Détails du projet</h3>
+                      <p className="text-lg mx-5">{projet.details}</p>
+                      <div className="mt-2 flex flex-wrap justify-center gap-2">
+                        {projet.skills.split(",").map((skill, skillIndex) => (
+                          <span
+                            key={skillIndex}
+                            className="bg-blue-500 text-white px-3 py-1 rounded-full text-base mt-1"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
