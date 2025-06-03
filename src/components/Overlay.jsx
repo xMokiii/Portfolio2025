@@ -124,14 +124,14 @@ export default function Overlay() {
                     </div>
                     {/* Face arrière */}
                     <div className="flip-card-back w-full h-full rounded-2xl flex flex-col justify-center items-center bg-gray-800 text-white p-4">
-                      <h2 className="text-4xl font-bold mb-2">{projet.titre}</h2>
-                      <h3 className="text-xl text-gray-400 mb-2">Détails du projet</h3>
-                      <p className="text-lg mx-5">{projet.details}</p>
-                      <div className="mt-2 flex flex-wrap justify-center gap-2">
+                      <h2 className="2xl:text-4xl text-xl font-bold 2xl:mb-2">{projet.titre}</h2>
+                      <h3 className="2xl:text-xl text-base text-gray-400 mb-2">Détails du projet</h3>
+                      <p className="text-xs 2xl:text-lg  mx-5">{projet.details}</p>
+                      <div className="2xl:mt-2 mt-1 flex flex-wrap justify-center gap-1 2xl:gap-2">
                         {projet.skills.split(",").map((skill, skillIndex) => (
                           <span
                             key={skillIndex}
-                            className="bg-blue-500 text-white px-3 py-1 rounded-full text-base mt-1"
+                            className="bg-blue-500 text-white px-3 2xl:py-1 rounded-full text-xs 2xl:text-base lg:mt-1"
                           >
                             {skill}
                           </span>

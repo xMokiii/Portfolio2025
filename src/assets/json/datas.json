@@ -17,7 +17,7 @@
         "urltexte": "Images du projet",
         "url": "https://www.facebook.com/photo?fbid=1194737289328067",
         "details": "Mise en place d'une infrastructure serveur Minecraft, incluant la création, le paramètrage et la gestion des droits et accès de mini-jeux et d'animations interactives. L'événement a eu lieu 2 fois en 2025 et est voué à être utilisé chaque année.",
-        "skills":"Gérer le patrimoine informatique, Travailler en mode projet, Répondre aux incidents et aux demandes d'assistance et d'évolution, Mettre à disposition des utilisateurs un service informatique"
+        "skills":"Gérer le patrimoine informatique, Travailler en mode projet, Répondre aux incidents et demandes d'assistance et d'évolution, Mettre à disposition des utilisateurs un service informatique"
       },
       {
         "titre": "Projet Epsi.fun ",
@@ -36,6 +36,7 @@
         "image":"Ecotrack.png",
         "urltexte": "Lien Github",
         "url": "https://github.com/KaRZa13/EcoTrack",
+        "details": "Développement d'une application web en Nuxt pour aider les salariés à suivre et réduire leur empreinte carbone. Le projet inclut la création d'une interface utilisateur intuitive, un formulaire, un classement et la gestion des données liées aux activités des utilisateurs.",
         "skills":"Développer la présence en ligne d'une organisation, Travailler en mode projet, Mettre à disposition des utilisateurs un service informatique"
       }
 
