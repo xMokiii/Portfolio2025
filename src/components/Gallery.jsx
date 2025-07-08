@@ -21,6 +21,12 @@ const IMGS = [
   { src: "/skills/vue.svg", alt: "Logo Vue", name: "Vue" },
   { src: "/skills/nuxt.svg", alt: "Logo Nuxt", name: "Nuxt" },
   { src: "/skills/supabase.svg", alt: "Logo Supabase", name: "Supabase" },
+  { src: "/skills/java.svg", alt: "Logo Java", name: "Java" },
+  { src: "/skills/tailwind.svg", alt: "Logo Tailwind CSS", name: "Tailwind CSS" },
+  { src: "/skills/threejs.svg", alt: "Logo Three.js", name: "Three.js" },
+  { src: "/skills/figma.svg", alt: "Logo Figma", name: "Figma" },
+  { src: "/skills/unity.svg", alt: "Logo Unity", name: "Unity" },
+  { src: "/skills/nodejs.svg", alt: "Logo Node.js", name: "Node.js" },
 
 ];
 
@@ -43,9 +49,9 @@ const Gallery = ({
   }, []);
 
   // 3D geometry
-  const cylinderWidth = isScreenSizeSm ? 1100 : 1800;
+  const cylinderWidth = isScreenSizeSm ? 1100 : 2000;
   const faceCount = images.length;
-  const faceWidth = (cylinderWidth / faceCount) * 1.4;
+  const faceWidth = (cylinderWidth / faceCount) * 1.5;
   const radius = cylinderWidth / (2 * Math.PI);
 
   // Framer Motion
